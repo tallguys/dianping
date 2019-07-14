@@ -21,7 +21,6 @@ cookies = json.loads(os.environ['COOKIES'])
 # headers
 headers = {
     'host': 'm.dianping.com',
-    'content-type': 'application/x-www-form-urlencoded',
     'origin': 'https://h5.dianping.com',
     'accept': 'application/json, text/javascript',
     'user-agent': ua,

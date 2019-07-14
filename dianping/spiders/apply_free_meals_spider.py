@@ -22,6 +22,7 @@ class ApplyFreeMealsSpider(scrapy.Spider):
 
         referer = 'https://h5.dianping.com/app/app-community-free-meal/index.html?notitlebar=1&cityid=7&latitude=22.57678&longitude=114.13430&cityid=7&ci=*&lat=*&lng=*&infrom=dpshouye&product=dpapp&pushEnabled=0'
         headers = copy.deepcopy(origin_headers)
+        headers['content-type'] = 'application/x-www-form-urlencoded'
         headers['referer'] = referer
 
         return scrapy.Request(url=url, callback=self.parseList, method='GET', headers=headers, cookies=cookies)
@@ -55,6 +56,7 @@ class ApplyFreeMealsSpider(scrapy.Spider):
             str(id) + '&token=' + token + \
             '&source=null&utm_source=null&uiwebview=1&product=dpapp&pushEnabled=0'
         headers = copy.deepcopy(origin_headers)
+        headers['content-type'] = 'application/x-www-form-urlencoded'
         headers['referer'] = referer
 
         return scrapy.Request(url=url, callback=self.parseDetail, method='GET', headers=headers, cookies=cookies, meta={'applyed': applyed})
@@ -134,6 +136,7 @@ class ApplyFreeMealsSpider(scrapy.Spider):
             str(shopId) + '&token=' + token + \
             '&uiwebview=1&product=dpapp&pushEnabled=0'
         headers = copy.deepcopy(origin_headers)
+        headers['content-type'] = 'application/json'
         headers['referer'] = referer
 
         body = {
@@ -162,6 +165,7 @@ class ApplyFreeMealsSpider(scrapy.Spider):
             str(shopId) + '&token=' + token + \
             '&uiwebview=1&product=dpapp&pushEnabled=0'
         headers = copy.deepcopy(origin_headers)
+        headers['content-type'] = 'application/json'
         headers['referer'] = referer
 
         body = {
@@ -169,7 +173,7 @@ class ApplyFreeMealsSpider(scrapy.Spider):
             'phoneNo': phone_number,
             'cx': '',
             'uuid': uuid,
-            'offlineActivityId': activityId,
+            'offlineActivityId': str(activityId),
             'env': 4,
             'source': 'null'
         }
